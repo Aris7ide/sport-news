@@ -12,14 +12,27 @@ public class F1 extends News{
     }
 
     @Override
-    public double calculateScore() {
+    public double calculatePrice() {
 
-        double totalScore = 100;
+        double totalPrice = 100;
 
         if (this.team != null && this.team.equalsIgnoreCase("Ferrari") ||
                                  this.team.equalsIgnoreCase("Mercedes")) {
-            totalScore += 50;
+            totalPrice += 50;
         }
+        return totalPrice;
+    }
+
+    @Override
+    public int calculateScore() {
+
+        int totalScore = 4;
+
+        if (this.team != null && this.team.equalsIgnoreCase("Ferrari") ||
+                                 this.team.equalsIgnoreCase("Mercedes")) {
+            totalScore += 2;
+        }
+
         return totalScore;
     }
 

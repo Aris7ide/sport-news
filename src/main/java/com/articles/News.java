@@ -14,7 +14,9 @@ public abstract class News {
         this.price = price;
     }
 
-    public abstract double calculateScore();
+    public abstract double calculatePrice();
+
+    public abstract int calculateScore();
 
     public String getTitle() {
         return title;

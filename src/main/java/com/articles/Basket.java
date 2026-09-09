@@ -14,20 +14,41 @@ public class Basket extends News{
     }
 
     @Override
-    public double calculateScore() {
+    public double calculatePrice() {
 
-        double totalScore = 250;
+        double totalPrice = 250;
 
         if (this.competition != null && this.competition.equalsIgnoreCase("Euroliga")) {
-            totalScore += 75;
+            totalPrice += 75;
         }
 
         if (this.club != null && this.club.equalsIgnoreCase("Barca") || this.club.equalsIgnoreCase("Madrid")) {
-            totalScore += 75;
+            totalPrice += 75;
+        }
+
+        return totalPrice;
+
+    }
+
+    @Override
+    public int calculateScore() {
+
+        int totalScore = 4 ;
+
+        if (this.competition != null && this.competition.equalsIgnoreCase("Euroliga")) {
+            totalScore += 3;
+        }
+
+        if (this.competition != null && this.competition.equalsIgnoreCase("ABC")) {
+            totalScore += 2;
+        }
+
+        if (this.club != null && this.club.equalsIgnoreCase("Barca") ||
+                                 this.club.equalsIgnoreCase("Madrid")) {
+            totalScore += 1;
         }
 
         return totalScore;
-
     }
 
     public String getCompetition() {

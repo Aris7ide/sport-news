@@ -14,20 +14,46 @@ public class Football extends News{
     }
 
     @Override
-    public double calculateScore() {
+    public double calculatePrice() {
 
-        double totalScore = 300;
+        double totalPrice = 300;
 
         if (this.competition != null && this.competition.equalsIgnoreCase("Liga de campeones")) {
-            totalScore += 100;
+            totalPrice += 100;
         }
 
         if (this.club != null && this.club.equalsIgnoreCase("Barca") || this.club.equalsIgnoreCase("Madrid")) {
-            totalScore += 100;
+            totalPrice += 100;
         }
 
         if (this.player != null && this.player.equalsIgnoreCase("Ferran Torres") || this.player.equalsIgnoreCase("Benzema")) {
-            totalScore += 50;
+            totalPrice += 50;
+        }
+
+        return totalPrice;
+    }
+
+    @Override
+    public int calculateScore() {
+
+        int totalScore = 5;
+
+        if (this.competition != null && this.competition.equalsIgnoreCase("Liga de campeones")) {
+            totalScore += 3;
+        }
+
+        if (this.competition != null && this.competition.equalsIgnoreCase("Liga")) {
+            totalScore += 2;
+        }
+
+        if (this.club != null && this.club.equalsIgnoreCase("Barca") ||
+                                 this.club.equalsIgnoreCase("Madrid")) {
+            totalScore += 1;
+        }
+
+        if (this.player != null && this.player.equalsIgnoreCase("Ferran Torres") ||
+                                    this.player.equalsIgnoreCase("Benzema")) {
+            totalScore += 1;
         }
 
         return totalScore;

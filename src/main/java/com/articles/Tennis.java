@@ -14,15 +14,29 @@ public class Tennis extends News{
     }
 
     @Override
-    public double calculateScore() {
+    public double calculatePrice() {
 
-        double totalScore = 150;
+        double totalPrice = 150;
 
         if (this.players != null && this.players.equalsIgnoreCase("Federer") ||
                                     this.players.equalsIgnoreCase("Nadal") ||
                                     this.players.equalsIgnoreCase("Djokovic")) {
-            totalScore += 100;
+            totalPrice += 100;
         }
+        return totalPrice;
+    }
+
+    @Override
+    public int calculateScore() {
+
+        int totalScore = 4;
+
+        if (this.players != null && this.players.equalsIgnoreCase("Federer") ||
+                                    this.players.equalsIgnoreCase("Nadal") ||
+                                    this.players.equalsIgnoreCase("Djokovic")) {
+            totalScore +=  3;
+        }
+
         return totalScore;
     }
 
