@@ -13,6 +13,23 @@ public class Basket extends News{
         this.club = club;
     }
 
+    @Override
+    public double calculateScore() {
+
+        double totalScore = 250;
+
+        if (this.competition != null && this.competition.equalsIgnoreCase("Euroliga")) {
+            totalScore += 75;
+        }
+
+        if (this.club != null && this.club.equalsIgnoreCase("Barca") || this.club.equalsIgnoreCase("Madrid")) {
+            totalScore += 75;
+        }
+
+        return totalScore;
+
+    }
+
     public String getCompetition() {
         return competition;
     }

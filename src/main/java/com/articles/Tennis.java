@@ -13,6 +13,19 @@ public class Tennis extends News{
         this.players = players;
     }
 
+    @Override
+    public double calculateScore() {
+
+        double totalScore = 150;
+
+        if (this.players != null && this.players.equalsIgnoreCase("Federer") ||
+                                    this.players.equalsIgnoreCase("Nadal") ||
+                                    this.players.equalsIgnoreCase("Djokovic")) {
+            totalScore += 100;
+        }
+        return totalScore;
+    }
+
     public String getCompetition() {
         return competition;
     }

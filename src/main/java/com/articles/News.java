@@ -1,6 +1,6 @@
 package com.articles;
 
-public class News {
+public abstract class News {
 
     private String title;
     private String body;
@@ -13,6 +13,8 @@ public class News {
         this.score = score;
         this.price = price;
     }
+
+    public abstract double calculateScore();
 
     public String getTitle() {
         return title;

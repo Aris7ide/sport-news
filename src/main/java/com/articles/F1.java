@@ -11,6 +11,18 @@ public class F1 extends News{
         this.team = team;
     }
 
+    @Override
+    public double calculateScore() {
+
+        double totalScore = 100;
+
+        if (this.team != null && this.team.equalsIgnoreCase("Ferrari") ||
+                                 this.team.equalsIgnoreCase("Mercedes")) {
+            totalScore += 50;
+        }
+        return totalScore;
+    }
+
     public String getTeam() {
         return team;
     }

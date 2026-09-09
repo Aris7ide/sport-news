@@ -11,6 +11,18 @@ public class Motogp extends News{
         this.team = team;
     }
 
+    @Override
+    public double calculateScore() {
+
+        double totalScore = 100;
+
+        if (this.team != null && this.team.equalsIgnoreCase("Honda") ||
+                                 this.team.equalsIgnoreCase("Yamaha")) {
+            totalScore += 50;
+        }
+        return totalScore;
+    }
+
     public String getTeam() {
         return team;
     }

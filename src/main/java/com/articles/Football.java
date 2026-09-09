@@ -13,6 +13,26 @@ public class Football extends News{
         this.player = player;
     }
 
+    @Override
+    public double calculateScore() {
+
+        double totalScore = 300;
+
+        if (this.competition != null && this.competition.equalsIgnoreCase("Liga de campeones")) {
+            totalScore += 100;
+        }
+
+        if (this.club != null && this.club.equalsIgnoreCase("Barca") || this.club.equalsIgnoreCase("Madrid")) {
+            totalScore += 100;
+        }
+
+        if (this.player != null && this.player.equalsIgnoreCase("Ferran Torres") || this.player.equalsIgnoreCase("Benzema")) {
+            totalScore += 50;
+        }
+
+        return totalScore;
+    }
+
     public String getCompetition() {
         return competition;
     }
