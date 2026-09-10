@@ -35,3 +35,4 @@ JAVA
 ### Creado el menu en el Main
 ### Creado el primo ArrayList de Redactores para almacenar los redactores creados.
 ### Craedo el ArrayList para guardar los articulos en cada redactor, tambièn he conseguido crear los metodos addRedactor, removeRedactor y addNews.
+### Creado el metodo removeNews usando for, if, switch y llamando Arraylist y Arraylist como atributos.

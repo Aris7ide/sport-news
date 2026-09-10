@@ -54,7 +54,7 @@ public class Main {
                 break;
             case 5:
 
-                //showNews();
+                showNews();
 
                 break;
             case 6:
@@ -299,6 +299,31 @@ public class Main {
         if (!found) {
             System.out.println("El redactor no existe");
         }
+
+    }
+
+    private static void showNews() {
+
+        System.out.println("De que redactor? Escribe el DNI:");
+        String dni = scanner.nextLine();
+
+        for (int i = 0; i < listRedactores.size(); i++) {
+            Redactor currentRedactor = listRedactores.get(i);
+
+            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+
+                for (News news : currentRedactor.getNewsList()) {
+                    System.out.println(news.getTitle());
+                }
+
+            }
+
+            else {
+                System.out.println("El redactor no existe.");
+            }
+
+        }
+
 
     }
 
