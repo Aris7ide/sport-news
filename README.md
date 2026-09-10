@@ -30,4 +30,8 @@ JAVA
 ## 📸 Demo
 [Enllaç a Vercel/Netlify] o captures de pantalla. (si és aplicable)
 
-## 🧩 Diagrames i justificació de decisions tècniques (si és aplicable)
+## 🧩 Execution:
+### Creado todas las clases y subclases, Redactores y todos tipos de noticias.
+### 
+### Creado el menu en el Main
+### Creado el primo ArrayList de Redactores para almacenar los redactores creados.

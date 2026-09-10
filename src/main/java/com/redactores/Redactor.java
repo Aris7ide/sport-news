@@ -1,15 +1,21 @@
 package com.redactores;
 
+import com.articles.News;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Redactor {
 
     private String name;
     private final String dni;
     private static int salary = 1500;
-    //ARRAYLIST con noticias
+    public static List<News> newsList;
 
     public Redactor(String dni, String name) {
         this.dni = dni;
         this.name = name;
+        this.newsList = new ArrayList<>();
     }
 
     public String getName() {

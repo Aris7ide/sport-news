@@ -1,14 +1,12 @@
 package com.articles;
 
-import com.articles.News;
-
 public class Basket extends News{
 
     private String competition;
     private String club;
 
     public Basket(String title, String body, double score, int price, String competition, String club) {
-        super(title, body, score, price);
+        super(title, body);
         this.competition = competition;
         this.club = club;
     }

@@ -6,11 +6,15 @@ public class Football extends News{
     private String club;
     private String player;
 
-    public Football(String title, String body, double score, int price, String competition, String club, String player) {
-        super(title, body, score, price);
+    public Football(String title, String body, String competition, String club, String player) {
+        super(title, body);
+
         this.competition = competition;
         this.club = club;
         this.player = player;
+
+        this.score = calculateScore();
+        this.price = calculatePrice();
     }
 
     @Override

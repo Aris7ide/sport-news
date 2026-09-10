@@ -4,14 +4,12 @@ public abstract class News {
 
     private String title;
     private String body;
-    private double score;
-    private int price;
+    public double score;
+    public double price;
 
-    public News(String title, String body, double score, int price) {
+    public News(String title, String body) {
         this.title = title;
         this.body = body;
-        this.score = score;
-        this.price = price;
     }
 
     public abstract double calculatePrice();
@@ -42,7 +40,7 @@ public abstract class News {
         this.score = score;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

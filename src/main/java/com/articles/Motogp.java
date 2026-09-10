@@ -1,13 +1,11 @@
 package com.articles;
 
-import com.articles.News;
-
 public class Motogp extends News{
 
     private String team;
 
     public Motogp(String title, String body, double score, int price, String team) {
-        super(title, body, score, price);
+        super(title, body);
         this.team = team;
     }
 
