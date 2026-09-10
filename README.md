@@ -32,6 +32,6 @@ JAVA
 
 ## 🧩 Execution:
 ### Creado todas las clases y subclases, Redactores y todos tipos de noticias.
-### 
 ### Creado el menu en el Main
 ### Creado el primo ArrayList de Redactores para almacenar los redactores creados.
+### Craedo el ArrayList para guardar los articulos en cada redactor, tambièn he conseguido crear los metodos addRedactor, removeRedactor y addNews.

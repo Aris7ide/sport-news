@@ -5,7 +5,7 @@ public class Basket extends News{
     private String competition;
     private String club;
 
-    public Basket(String title, String body, double score, int price, String competition, String club) {
+    public Basket(String title, String body, String competition, String club) {
         super(title, body);
         this.competition = competition;
         this.club = club;

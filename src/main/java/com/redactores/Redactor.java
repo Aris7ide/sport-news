@@ -10,12 +10,20 @@ public class Redactor {
     private String name;
     private final String dni;
     private static int salary = 1500;
-    public static List<News> newsList;
+    private List<News> newsList;
 
     public Redactor(String dni, String name) {
         this.dni = dni;
         this.name = name;
         this.newsList = new ArrayList<>();
+    }
+
+    public List<News> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
     }
 
     public String getName() {

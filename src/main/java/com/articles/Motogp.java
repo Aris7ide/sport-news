@@ -4,7 +4,7 @@ public class Motogp extends News{
 
     private String team;
 
-    public Motogp(String title, String body, double score, int price, String team) {
+    public Motogp(String title, String body, String team) {
         super(title, body);
         this.team = team;
     }
