@@ -23,8 +23,8 @@ public class Main {
                             "3. Introducir noticia en un redactor\n" +
                             "4. Eliminar nooticia\n" +
                             "5. Mostrar todas las noticias de un redactor\n" +
-                            "6. Calcular puntuaciòn de una noticia\n" +
-                            "7. Calcular precio de una noticia\n" +
+                            "6. Calcular precio de una noticia\n" +
+                            "7. Calcular score de una noticia\n" +
                             "0. Salir.");
 
         opcion = scanner.nextInt();
@@ -59,10 +59,13 @@ public class Main {
                 break;
             case 6:
 
-
+                calculatePrice();
 
                 break;
             case 7:
+
+                calculateScore();
+
                 break;
             case 0:
 
@@ -307,7 +310,7 @@ public class Main {
         System.out.println("De que redactor? Escribe el DNI:");
         String dni = scanner.nextLine();
 
-        for (int i = 0; i < listRedactores.size(); i++) {
+        for (int i = 0; i <= listRedactores.size(); i++) {
             Redactor currentRedactor = listRedactores.get(i);
 
             if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
@@ -324,6 +327,67 @@ public class Main {
 
         }
 
+
+    }
+
+    private static void calculatePrice() {
+
+        System.out.println("Escribe el DNI del redactor:");
+        String dni = scanner.nextLine();
+
+        for (int i = 0; i < listRedactores.size(); i++) {
+            Redactor currentRedactor = listRedactores.get(i);
+
+            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+
+                System.out.println("Escribe el titular del articulo:");
+                String title = scanner.nextLine();
+
+                for (int y = 0; y < currentRedactor.getNewsList().size(); y++) {
+                    News currentNews = currentRedactor.getNewsList().get(y);
+
+                    if (currentNews.getTitle().equalsIgnoreCase(title)) {
+                        System.out.println("El precio es " + currentNews.calculatePrice() + " Euros.");
+                    }
+                }
+
+            }
+
+            else {
+                System.out.println("El redactor no existe");
+            }
+
+        }
+
+    }
+
+    private static void calculateScore() {
+        System.out.println("Escribe el DNI del redactor:");
+        String dni = scanner.nextLine();
+
+        for (int i = 0; i < listRedactores.size(); i++) {
+            Redactor currentRedactor = listRedactores.get(i);
+
+            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+
+                System.out.println("Escribe el titular del articulo:");
+                String title = scanner.nextLine();
+
+                for (int y = 0; y < currentRedactor.getNewsList().size(); y++) {
+                    News currentNews = currentRedactor.getNewsList().get(y);
+
+                    if (currentNews.getTitle().equalsIgnoreCase(title)) {
+                        System.out.println("El score es " + currentNews.calculateScore() + " puntos");
+                    }
+                }
+
+            }
+
+            else {
+                System.out.println("El redactor no existe");
+            }
+
+        }
 
     }
 

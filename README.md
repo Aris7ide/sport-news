@@ -16,7 +16,7 @@ Tenis : competición y tenistas.
 F1 : escudería.
 Motociclismo : equipo.
 
-## ✨ herencia , atributos estáticos y finales , polimorfismo , y la gestión de objetos relacionados entre sí
+## ✨ herencia, atributos estáticos y finales, polimorfismo , y la gestión de objetos relacionados entre sí
 
 ## 🛠 Tecnologies
 JAVA
@@ -27,12 +27,13 @@ JAVA
 3. Execució de l'aplicació.
 4. Proves: Com executar les proves.
 
-## 📸 Demo
-[Enllaç a Vercel/Netlify] o captures de pantalla. (si és aplicable)
-
 ## 🧩 Execution:
 ### Creado todas las clases y subclases, Redactores y todos tipos de noticias.
 ### Creado el menu en el Main
 ### Creado el primo ArrayList de Redactores para almacenar los redactores creados.
 ### Craedo el ArrayList para guardar los articulos en cada redactor, tambièn he conseguido crear los metodos addRedactor, removeRedactor y addNews.
 ### Creado el metodo removeNews usando for, if, switch y llamando Arraylist y Arraylist como atributos.
+### Creado el metodo showNews al menu
+### Creado el motodo calculatePrice, llamando el metodo de la clase articulo atraves un metodo en la clase Mmain.
+### Hecho lo mismo con calculateScore y hecho pruebas para ver que todo funcione bien.
+### hecho un ultimo commit y un push para dejarlo todo limpio y terminado el README.md
