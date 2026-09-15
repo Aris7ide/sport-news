@@ -1,4 +1,4 @@
-# Ejercicio 1 - Redacción de noticias deportivasm del Projecte
+# S1.01 NIVEL 3 Ejercicio 1 - Redacción de noticias deportivasm del Projecte
 
 📌 ¿Estás diseñando un sistema para una redacción de noticias deportivas. Las noticias están clasificadas según el deporte al que hacen referencia: fútbol, ​​baloncesto, tenis, F1 y motociclismo .
 
@@ -16,7 +16,7 @@ Tenis : competición y tenistas.
 F1 : escudería.
 Motociclismo : equipo.
 
-## ✨ herencia, atributos estáticos y finales, polimorfismo , y la gestión de objetos relacionados entre sí
+## ✨ herencia, atributos estáticos y finales , polimorfismo , y la gestión de objetos relacionados entre sí
 
 ## 🛠 Tecnologies
 JAVA
