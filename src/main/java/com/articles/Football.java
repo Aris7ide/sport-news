@@ -22,15 +22,15 @@ public class Football extends News{
 
         double totalPrice = 300;
 
-        if (this.competition != null && this.competition.equalsIgnoreCase("Liga de campeones")) {
+        if (this.competition.equalsIgnoreCase("Liga de campeones")) {
             totalPrice += 100;
         }
 
-        if (this.club != null && this.club.equalsIgnoreCase("Barca") || this.club.equalsIgnoreCase("Madrid")) {
+        if (this.club.equalsIgnoreCase("Barca") || this.club.equalsIgnoreCase("Madrid")) {
             totalPrice += 100;
         }
 
-        if (this.player != null && this.player.equalsIgnoreCase("Ferran Torres") || this.player.equalsIgnoreCase("Benzema")) {
+        if (this.player.equalsIgnoreCase("Ferran Torres") || this.player.equalsIgnoreCase("Benzema")) {
             totalPrice += 50;
         }
 

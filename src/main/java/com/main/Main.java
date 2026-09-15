@@ -14,85 +14,106 @@ public class Main {
 
     static void main(String[] args) {
 
-    int opcion = 1;
+        int opcion = 1;
 
-    do {
-        System.out.println("ELEGIR UNA OPCION \n" +
-                            "1. Introducir redactor \n" +
-                            "2. Eliminar redactor\n" +
-                            "3. Introducir noticia en un redactor\n" +
-                            "4. Eliminar nooticia\n" +
-                            "5. Mostrar todas las noticias de un redactor\n" +
-                            "6. Calcular precio de una noticia\n" +
-                            "7. Calcular score de una noticia\n" +
-                            "0. Salir.");
+        do {
+            System.out.println("ELEGIR UNA OPCION \n" +
+                    "1. Introducir redactor \n" +
+                    "2. Eliminar redactor\n" +
+                    "3. Introducir noticia en un redactor\n" +
+                    "4. Eliminar nooticia\n" +
+                    "5. Mostrar todas las noticias de un redactor\n" +
+                    "6. Calcular precio de una noticia\n" +
+                    "7. Calcular score de una noticia\n" +
+                    "0. Salir.");
 
-        opcion = scanner.nextInt();
-        scanner.nextLine();
+            opcion = scanner.nextInt();
+            scanner.nextLine();
 
-        switch (opcion) {
+            switch (opcion) {
 
-            case 1:
-
-                addRedactor();
-
-                break;
-            case 2:
-
-                removeRedactor();
-
-                break;
-            case 3:
-
-                addNews();
-
-                break;
-            case 4:
-
-                removeNews();
-
-                break;
-            case 5:
-
-                showNews();
-
-                break;
-            case 6:
-
-                calculatePrice();
-
-                break;
-            case 7:
-
-                calculateScore();
-
-                break;
-            case 0:
-
-                System.out.println("Adiòs.");
-
-                break;
-        }
+                case 1:
+                    addRedactor();
+                    break;
+                case 2:
+                    removeRedactor();
+                    break;
+                case 3:
+                    addNews();
+                    break;
+                case 4:
+                    removeNews();
+                    break;
+                case 5:
+                    showNews();
+                    break;
+                case 6:
+                    calculatePrice();
+                    break;
+                case 7:
+                    calculateScore();
+                    break;
+                case 0:
+                    System.out.println("Adiòs.");
+                    break;
+                default:
+                    System.out.println("Entre 0 y 7");
+            }
 
 
-    } while (opcion != 0 && opcion <= 7);
+        } while (opcion != 0);
 
-    scanner.close();
+        scanner.close();
 
     }
 
-    // AQUI EL METODO, mete el nuevo redactor en un newRedactor.
+    private static Redactor searchRedactor(String dni) {
+
+        for (Redactor redactor : listRedactores) {
+            Redactor currentRedactor = redactor;
+            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+                return redactor;
+            }
+        }
+
+        return null;
+    }
+
+    private static News searchNews(String title, String dni) {
+        Redactor redactor = searchRedactor(dni);
+
+        if (redactor != null) {
+            for (News news : redactor.getNewsList()) {
+                if (news.getTitle().equalsIgnoreCase(title)) {
+                    return news;
+                }
+            }
+        }
+
+        return null;
+    }
+
     private static void addRedactor() {
-        System.out.println("Introduce el nombre:");
-        String name = scanner.nextLine();
 
         System.out.println("Introduce el DNI:");
         String dni = scanner.nextLine();
 
-        Redactor newRedactor = new Redactor(dni,name);
-        listRedactores.add(newRedactor);
+        // BUSCA REDACTOR Y SACA DNI
+        Redactor currentRedactor = searchRedactor(dni);
 
-        System.out.println("Redactor " + name + " registrado con dni " + dni);
+        if (currentRedactor != null) {
+
+            System.out.println("El redactor ya existe");
+
+        } else {
+            System.out.println("Introduce el nombre:");
+            String name = scanner.nextLine();
+
+            Redactor newRedactor = new Redactor(dni, name);
+            listRedactores.add(newRedactor);
+
+            System.out.println("Redactor " + name + " registrado con dni " + dni);
+        }
 
     }
 
@@ -101,21 +122,13 @@ public class Main {
         System.out.println("Introduce el dni del redactor:");
         String dni = scanner.nextLine();
 
-        boolean found = false;
+        Redactor currentRedactor = searchRedactor(dni);
 
-        for (int i = 0; i < listRedactores.size(); i++) {
-            Redactor currentRedactor = listRedactores.get(i);
-
-            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
-                listRedactores.remove(i);
-                found = true;
-                System.out.println("El redactor con dni " + dni + " ha sido eliminado");
-                break;
-            }
-        }
-
-        if (!found) {
-            System.out.println("No se ha encontrado el readactor.");
+        if (currentRedactor != null) {
+            listRedactores.remove(currentRedactor);
+            System.out.println("El redactor ha sido eliminado");
+        } else {
+            System.out.println("El redactor no existe");
         }
 
     }
@@ -125,140 +138,130 @@ public class Main {
         System.out.println("Pon en dni del redactor que escribe el articulo:");
         String dni = scanner.nextLine();
 
-        boolean found = false;
+        Redactor currentRedactor = searchRedactor(dni);
 
-        String title;
-        String body;
-        String competicion;
-        String club;
-        String player;
-        String team;
+        if (currentRedactor != null) {
 
+            String title;
+            String body;
+            String competicion;
+            String club;
+            String player;
+            String team;
 
-        for (int i = 0; i < listRedactores.size(); i++) {
-            Redactor currentRedactor = listRedactores.get(i);
+            System.out.println("Que tipo de noticia ha escrito " + currentRedactor.getName() + "?\n" +
+                    "1. Football\n" +
+                    "2. Basket\n" +
+                    "3. Tennis\n" +
+                    "4. F1\n" +
+                    "5. MotoGP");
 
-            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
 
-                //He encontrado el redactor, ahora habrà que meterle la noticia.
-                System.out.println("Que tipo de noticia ha escrito " + currentRedactor.getName() + "?\n" +
-                        "1. Football\n" +
-                        "2. Basket\n" +
-                        "3. Tennis\n" +
-                        "4. F1\n" +
-                        "5. MotoGP");
+            switch (opcion) {
+                case 1:
 
-                int opcion = scanner.nextInt();
-                scanner.nextLine();
+                    System.out.println("Cual es el titulo?");
+                    title = scanner.nextLine();
 
-                found = true;
+                    System.out.println("Escribe el texto del articulo:");
+                    body = scanner.nextLine();
 
-                switch (opcion) {
-                    case 1:
+                    System.out.println("En que liga?");
+                    competicion = scanner.nextLine();
 
-                        System.out.println("Cual es el titulo?");
-                        title = scanner.nextLine();
+                    System.out.println("Que club?");
+                    club = scanner.nextLine();
 
-                        System.out.println("Escribe el texto del articulo:");
-                        body = scanner.nextLine();
+                    System.out.println("Que jugador?");
+                    player = scanner.nextLine();
 
-                        System.out.println("En que liga?");
-                        competicion = scanner.nextLine();
+                    Football newFootballNews = new Football(title, body, competicion, club, player);
+                    currentRedactor.getNewsList().add(newFootballNews);
 
-                        System.out.println("Que club?");
-                        club = scanner.nextLine();
+                    System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
+                    break;
 
-                        System.out.println("Que jugador?");
-                        player = scanner.nextLine();
+                case 2:
 
-                        Football newFootballNews = new Football(title,body,competicion,club,player);
-                        currentRedactor.getNewsList().add(newFootballNews);
+                    System.out.println("Cual es el titulo?");
+                    title = scanner.nextLine();
 
-                        System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
-                        break;
+                    System.out.println("Escribe el texto del articulo:");
+                    body = scanner.nextLine();
 
-                    case 2:
+                    System.out.println("Que competicion?");
+                    competicion = scanner.nextLine();
 
-                        System.out.println("Cual es el titulo?");
-                        title = scanner.nextLine();
+                    System.out.println("Que club?");
+                    club = scanner.nextLine();
 
-                        System.out.println("Escribe el texto del articulo:");
-                        body = scanner.nextLine();
+                    Basket newBasketNews = new Basket(title, body, competicion, club);
+                    currentRedactor.getNewsList().add(newBasketNews);
 
-                        System.out.println("Que competicion?");
-                        competicion = scanner.nextLine();
+                    System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
+                    break;
 
-                        System.out.println("Que club?");
-                        club = scanner.nextLine();
+                case 3:
 
-                        Basket newBasketNews = new Basket(title,body,competicion,club);
-                        currentRedactor.getNewsList().add(newBasketNews);
+                    System.out.println("Cual es el titulo?");
+                    title = scanner.nextLine();
 
-                        System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
-                        break;
+                    System.out.println("Escribe el texto del articulo:");
+                    body = scanner.nextLine();
 
-                    case 3:
+                    System.out.println("Que competicion?");
+                    competicion = scanner.nextLine();
 
-                        System.out.println("Cual es el titulo?");
-                        title = scanner.nextLine();
+                    System.out.println("Quien es el tenista?");
+                    player = scanner.nextLine();
 
-                        System.out.println("Escribe el texto del articulo:");
-                        body = scanner.nextLine();
+                    Tennis newTennisNews = new Tennis(title, body, competicion, player);
+                    currentRedactor.getNewsList().add(newTennisNews);
 
-                        System.out.println("Que competicion?");
-                        competicion = scanner.nextLine();
+                    System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
+                    break;
 
-                        System.out.println("Quien es el tenista?");
-                        player = scanner.nextLine();
+                case 4:
 
-                        Tennis newTennisNews = new Tennis(title,body,competicion,player);
-                        currentRedactor.getNewsList().add(newTennisNews);
+                    System.out.println("Cual es el titulo?");
+                    title = scanner.nextLine();
 
-                        System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
-                        break;
+                    System.out.println("Escribe el texto del articulo:");
+                    body = scanner.nextLine();
 
-                    case 4:
+                    System.out.println("Que escuderia?");
+                    team = scanner.nextLine();
 
-                        System.out.println("Cual es el titulo?");
-                        title = scanner.nextLine();
+                    F1 newF1News = new F1(title, body, team);
+                    currentRedactor.getNewsList().add(newF1News);
 
-                        System.out.println("Escribe el texto del articulo:");
-                        body = scanner.nextLine();
+                    System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
+                    break;
 
-                        System.out.println("Que escuderia?");
-                        team = scanner.nextLine();
+                case 5:
 
-                        F1 newF1News = new F1(title,body,team);
-                        currentRedactor.getNewsList().add(newF1News);
+                    System.out.println("Cual es el titulo?");
+                    title = scanner.nextLine();
 
-                        System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
-                        break;
+                    System.out.println("Escribe el texto del articulo:");
+                    body = scanner.nextLine();
 
-                    case 5:
+                    System.out.println("Que equipo?");
+                    team = scanner.nextLine();
 
-                        System.out.println("Cual es el titulo?");
-                        title = scanner.nextLine();
+                    Motogp newMotogpNews = new Motogp(title, body, team);
+                    currentRedactor.getNewsList().add(newMotogpNews);
 
-                        System.out.println("Escribe el texto del articulo:");
-                        body = scanner.nextLine();
-
-                        System.out.println("Que equipo?");
-                        team = scanner.nextLine();
-
-                        Motogp newMotogpNews = new Motogp(title,body,team);
-                        currentRedactor.getNewsList().add(newMotogpNews);
-
-                        System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
-                        break;
-                }
-
-                break;
+                    System.out.println("El articulo " + title + " ha sido añadido por el redactor " + currentRedactor.getName() + ".");
+                    break;
             }
+
+        } else {
+            System.out.println("El redactor no existe");
         }
 
-        if (!found) {
-            System.out.println("No se ha encontrado el readactor.");
-        }
 
     }
 
@@ -267,40 +270,28 @@ public class Main {
         System.out.println("Escribe el dni del redactor");
         String dni = scanner.nextLine();
 
-        boolean found = false;
+        Redactor currentRedactor = searchRedactor(dni);
 
-        for (int i = 0; i < listRedactores.size(); i++) {
-            Redactor currentRedactor = listRedactores.get(i);
+        if (currentRedactor != null) {
 
-            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+            System.out.println("Escribe el titular del articulo");
+            String title = scanner.nextLine();
 
-                found = true;
+            News currentNews = searchNews(title, dni);
 
-                System.out.println("Escribe el titular del articulo");
-                String title = scanner.nextLine();
+            if (currentNews != null) {
+                currentRedactor.getNewsList().remove(currentNews);
 
-                for (int y = 0; y < currentRedactor.getNewsList().size(); y++) {
-                    News currentNews = currentRedactor.getNewsList().get(i);
+                System.out.println("El articulo " + currentNews.getTitle() + " ha sido eliminado");
 
-                    if (currentNews.getTitle().equalsIgnoreCase(title)) {
-                        currentRedactor.getNewsList().remove(i);
-
-                        System.out.println("El articulo " + currentNews.getTitle() + " ha sido eliminado");
-
-                    }
-
-                    else {
-                        System.out.println("El articulo no existe");
-                    }
-
-                }
-
+            } else {
+                System.out.println("El articulo no existe");
             }
 
-        }
 
-        if (!found) {
+        } else {
             System.out.println("El redactor no existe");
+
         }
 
     }
@@ -310,24 +301,17 @@ public class Main {
         System.out.println("De que redactor? Escribe el DNI:");
         String dni = scanner.nextLine();
 
-        for (int i = 0; i <= listRedactores.size(); i++) {
-            Redactor currentRedactor = listRedactores.get(i);
+        Redactor currentRedactor = searchRedactor(dni);
 
-            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+        if (currentRedactor != null) {
 
-                for (News news : currentRedactor.getNewsList()) {
-                    System.out.println(news.getTitle());
-                }
-
+            for (News n : currentRedactor.getNewsList()) {
+                System.out.println(n.getTitle());
             }
 
-            else {
-                System.out.println("El redactor no existe.");
-            }
-
+        } else {
+            System.out.println("El redactor no existe.");
         }
-
-
     }
 
     private static void calculatePrice() {
@@ -335,28 +319,24 @@ public class Main {
         System.out.println("Escribe el DNI del redactor:");
         String dni = scanner.nextLine();
 
-        for (int i = 0; i < listRedactores.size(); i++) {
-            Redactor currentRedactor = listRedactores.get(i);
+        Redactor currentRedactor = searchRedactor(dni);
 
-            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+        if (currentRedactor != null) {
 
-                System.out.println("Escribe el titular del articulo:");
-                String title = scanner.nextLine();
+            System.out.println("Escribe el titular del articulo:");
+            String title = scanner.nextLine();
 
-                for (int y = 0; y < currentRedactor.getNewsList().size(); y++) {
-                    News currentNews = currentRedactor.getNewsList().get(y);
+            News currentNews = searchNews(title, dni);
 
-                    if (currentNews.getTitle().equalsIgnoreCase(title)) {
-                        System.out.println("El precio es " + currentNews.calculatePrice() + " Euros.");
-                    }
-                }
+            if (currentNews != null) {
 
+                System.out.println("El precio es " + currentNews.calculatePrice() + " Euros.");
+            } else {
+                System.out.println("El articulo no existe");
             }
 
-            else {
-                System.out.println("El redactor no existe");
-            }
-
+        } else {
+            System.out.println("El redactor no existe");
         }
 
     }
@@ -365,31 +345,26 @@ public class Main {
         System.out.println("Escribe el DNI del redactor:");
         String dni = scanner.nextLine();
 
-        for (int i = 0; i < listRedactores.size(); i++) {
-            Redactor currentRedactor = listRedactores.get(i);
+        Redactor currentRedactor = searchRedactor(dni);
 
-            if (currentRedactor.getDni().equalsIgnoreCase(dni)) {
+        if (currentRedactor != null) {
 
-                System.out.println("Escribe el titular del articulo:");
-                String title = scanner.nextLine();
+            System.out.println("Escribe el titular del articulo:");
+            String title = scanner.nextLine();
 
-                for (int y = 0; y < currentRedactor.getNewsList().size(); y++) {
-                    News currentNews = currentRedactor.getNewsList().get(y);
+            News currentNews = searchNews(title, dni);
 
-                    if (currentNews.getTitle().equalsIgnoreCase(title)) {
-                        System.out.println("El score es " + currentNews.calculateScore() + " puntos");
-                    }
-                }
+            if (currentNews != null) {
 
+                System.out.println("La puntuacion es de " + currentNews.calculateScore() + " puntos.");
+            } else {
+                System.out.println("El articulo no existe");
             }
 
-            else {
-                System.out.println("El redactor no existe");
-            }
-
+        } else {
+            System.out.println("El redactor no existe");
         }
 
     }
-
 
 }
